@@ -1,0 +1,16 @@
+{
+  "presets": ["react", "env", "stage-0"],
+  "plugins": [
+    "transform-decorators-legacy",
+    "transform-class-properties",
+    "syntax-dynamic-import"
+  ],
+  "env": {
+    "production": {
+      "plugins": [
+        "transform-react-constant-elements",
+        "transform-react-remove-prop-types"
+      ]
+    }
+  }
+}

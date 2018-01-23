@@ -12,7 +12,7 @@
     "build:prod": "cross-env NODE_ENV=production webpack -p",
     "serve": "browser-sync start --server \"public\" --files \"public\" --port 3000",
     "start": "run-p -r serve build:watch",
-    "precommit": "lint-staged && npm run build"
+    "precommit": "lint-staged && npm run build:prod"
   },
   "repository": {
     "type": "git",
@@ -30,6 +30,7 @@
   "homepage": "https://github.com/thiamsantos/react-boilerplate#readme",
   "devDependencies": {
     "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.1",
     "babel-loader": "^7.1.2",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
@@ -44,6 +45,9 @@
     "cross-env": "^5.1.3",
     "css-loader": "^0.28.9",
     "cssnano": "^3.10.0",
+    "eslint": "^4.16.0",
+    "eslint-config-xo-react": "^0.15.0",
+    "eslint-plugin-react": "^7.5.1",
     "extract-text-webpack-plugin": "^3.0.2",
     "friendly-errors-webpack-plugin": "^1.6.1",
     "html-webpack-plugin": "^2.30.1",
@@ -63,8 +67,31 @@
     "xo": "^0.18.2"
   },
   "dependencies": {
-    "autobind-decorator": "^2.1.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "semi": false,
+    "bracketSpacing": false,
+    "trailingComma": "none"
+  },
+  "xo": {
+    "parser": "babel-eslint",
+    "space": true,
+    "semicolon": false,
+    "envs": [
+      "browser"
+    ],
+    "extends": "xo-react",
+    "rules": {
+      "import/no-unassigned-import": 0
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "npm run lint",
+      "git add"
+    ]
   }
 }

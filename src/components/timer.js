@@ -1,14 +1,15 @@
 import React, {Component} from 'react'
-import autobind from 'autobind-decorator'
 
-export default class Timer extends React.Component {
+export default class Timer extends Component {
   constructor(props) {
     super(props)
     this.state = {seconds: 0}
+    this.handleResetClick = this.handleResetClick.bind(this)
   }
 
   tick() {
     this.setState(prevState => ({
+      ...prevState,
       seconds: prevState.seconds + 1
     }))
   }
@@ -21,14 +22,26 @@ export default class Timer extends React.Component {
     clearInterval(this.interval)
   }
 
-  @autobind reset() {
-    this.state.seconds = 0
+  handleResetClick() {
+    this.setState(prevState => ({
+      ...prevState,
+      seconds: 0
+    }))
   }
 
   render() {
-    return [
-      <div>Seconds: {this.state.seconds}</div>,
-      <button onClick={this.reset}>Reset</button>
-    ]
+    const {seconds} = this.state
+
+    return (
+      <div>
+        <p>
+          Seconds:
+          {seconds}
+        </p>
+        <button type="button" onClick={this.handleResetClick}>
+          Reset
+        </button>
+      </div>
+    )
   }
 }

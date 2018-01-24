@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Timer /> component should render correctly 1`] = `
+<div>
+  <p>
+    Seconds:
+    12
+  </p>
+  <button
+    onClick={[MockFunction]}
+    type="button"
+  >
+    Reset
+  </button>
+</div>
+`;

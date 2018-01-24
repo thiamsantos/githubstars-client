@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 
 export default class Timer extends Component {
   render() {
@@ -16,4 +17,9 @@ export default class Timer extends Component {
       </div>
     )
   }
+}
+
+Timer.propTypes = {
+  seconds: PropTypes.number.isRequired,
+  onResetClick: PropTypes.func.isRequired
 }

@@ -91,9 +91,9 @@ module.exports = () => {
         filename: path.resolve(__dirname, 'public/index.html')
       }),
       new webpack.DefinePlugin({
-        'process.env.NODE_ENV': isProd
-          ? JSON.stringify('production')
-          : JSON.stringify('development')
+        'process.env.NODE_ENV': isProd ?
+          JSON.stringify('production') :
+          JSON.stringify('development')
       })
     ]
   }

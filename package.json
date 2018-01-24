@@ -4,17 +4,18 @@
   "description": "React boilerplate",
   "main": "index.js",
   "scripts": {
+    "prelint": "prettier --single-quote --no-semi --no-bracket-spacing --trailing-comma none --write \"src/**/*.js\" --write webpack.config.js",
+    "lint": "xo --fix",
+    "pretest": "npm run lint",
     "test": "jest",
     "test:watch": "jest --watch",
     "coverage": "jest --coverage",
-    "prelint": "prettier --single-quote --no-semi --no-bracket-spacing --trailing-comma none --write \"src/**/*.js\" --write webpack.config.js",
-    "lint": "xo --fix",
     "build": "cross-env NODE_ENV=development webpack --hide-modules --colors --progress",
     "build:watch": "cross-env NODE_ENV=development webpack -w --hide-modules --colors --progress",
     "build:prod": "cross-env NODE_ENV=production webpack -p",
     "serve": "browser-sync start --server \"public\" --files \"public\" --port 3000",
     "start": "run-p -r serve build:watch",
-    "precommit": "lint-staged && npm run build:prod"
+    "precommit": "lint-staged && npm test && npm run build:prod"
   },
   "repository": {
     "type": "git",
@@ -73,6 +74,7 @@
     "xo": "^0.18.2"
   },
   "dependencies": {
+    "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
   },

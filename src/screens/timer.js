@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import BaseScreen from '../containers/base-screen'
 import TimerPresentation from '../components/timer'
 
 export default class Timer extends Component {
@@ -35,12 +34,10 @@ export default class Timer extends Component {
     const {seconds} = this.state
 
     return (
-      <BaseScreen>
-        <TimerPresentation
-          seconds={seconds}
-          onResetClick={this.handleResetClick}
-        />
-      </BaseScreen>
+      <TimerPresentation
+        seconds={seconds}
+        onResetClick={this.handleResetClick}
+      />
     )
   }
 }

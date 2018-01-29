@@ -1,15 +1,49 @@
 import React from 'react'
-import {BrowserRouter as Router, Switch} from 'react-router-dom'
-import AsyncRoute from './containers/async-route'
+import Async from 'react-code-splitting'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import BaseScreen from './containers/base-screen'
+
+const Home = props => (
+  <Async load={import('./screens/home')} componentProps={props}/>
+)
+
+const About = props => (
+  <Async load={import('./screens/about')} componentProps={props}/>
+)
+
+const Topics = props => (
+  <Async load={import('./screens/topics')} componentProps={props}/>
+)
+
+const Timer = props => (
+  <Async load={import('./screens/timer')} componentProps={props}/>
+)
+
+const NoMatch = props => (
+  <Async load={import('./screens/no-match')} componentProps={props}/>
+)
+
+const Login = () => (
+  <div>
+Login
+  </div>
+)
 
 const App = () => (
   <Router>
     <Switch>
-      <AsyncRoute exact path="/" component={import('./screens/home')}/>
-      <AsyncRoute path="/about" component={import('./screens/about')}/>
-      <AsyncRoute path="/topics" component={import('./screens/topics')}/>
-      <AsyncRoute path="/timer" component={import('./screens/timer')}/>
-      <AsyncRoute component={import('./screens/no-match')}/>
+      <Route exact path="/login" component={Login}/>
+      <Route>
+        <BaseScreen>
+          <Switch>
+            <Route exact path="/" component={Home}/>
+            <Route path="/about" component={About}/>
+            <Route path="/topics" component={Topics}/>
+            <Route path="/timer" component={Timer}/>
+            <Route component={NoMatch}/>
+          </Switch>
+        </BaseScreen>
+      </Route>
     </Switch>
   </Router>
 )

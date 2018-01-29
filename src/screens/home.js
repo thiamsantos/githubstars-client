@@ -4,7 +4,7 @@ import Title from '../components/ui/title'
 const Home = () => (
   <div>
     <Title>
-Home
+      Home
     </Title>
   </div>
 )

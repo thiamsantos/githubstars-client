@@ -7,29 +7,29 @@ import Subtitle from '../components/ui/subtitle'
 
 const DefaultTopic = () => (
   <Subtitle>
-Please select a topic.
+    Please select a topic.
   </Subtitle>
 )
 
 const Topics = ({match}) => (
   <div>
     <Title>
-Topics
+      Topics
     </Title>
     <ul>
       <li>
         <Link to={`${match.url}/rendering`}>
-Rendering with React
+          Rendering with React
         </Link>
       </li>
       <li>
         <Link to={`${match.url}/components`}>
-Components
+          Components
         </Link>
       </li>
       <li>
         <Link to={`${match.url}/props-v-state`}>
-Props v. State
+          Props v. State
         </Link>
       </li>
     </ul>

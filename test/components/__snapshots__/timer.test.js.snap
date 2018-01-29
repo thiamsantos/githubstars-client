@@ -2,6 +2,11 @@
 
 exports[`<Timer /> component should render correctly 1`] = `
 <div>
+  <h1
+    className="title"
+  >
+    Timer
+  </h1>
   <p>
     Seconds:
     12

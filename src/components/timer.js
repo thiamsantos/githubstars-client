@@ -1,8 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Title from './ui/title'
 
 const Timer = ({onResetClick, seconds}) => (
   <div>
+    <Title>
+      Timer
+    </Title>
     <p>
       Seconds:
       {seconds}

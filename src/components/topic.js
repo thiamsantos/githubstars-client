@@ -1,11 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Subtitle from './ui/subtitle'
 
 const Topic = ({match}) => (
   <div>
-    <h3>
+    <Subtitle>
       {match.params.topicId}
-    </h3>
+    </Subtitle>
   </div>
 )
 

@@ -14,7 +14,10 @@ module.exports = () => {
   const isProd = process.env.NODE_ENV === 'production'
 
   const config = {
-    entry: {app: './src/index.js', vendor: ['react', 'react-dom']},
+    entry: {
+      app: path.resolve(__dirname, 'src/index.js'),
+      vendor: ['react', 'react-dom']
+    },
     output: {
       filename: '[name].[hash].js',
       path: path.resolve(__dirname, 'public/static'),

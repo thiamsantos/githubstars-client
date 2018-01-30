@@ -6,7 +6,7 @@ const Navbar = ({links}) => (
   <nav className="navbar is-transparent">
     <ul className="navbar-start">
       {links.map(({href, text}) => (
-        <NavbarItem key={href} href={href} text={text}/>
+        <NavbarItem key={href} href={href} text={text} />
       ))}
     </ul>
   </nav>

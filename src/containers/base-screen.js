@@ -13,7 +13,7 @@ const links = [
 
 const BaseScreen = ({children}) => (
   <div>
-    <Navbar links={links}/>
+    <Navbar links={links} />
 
     <Section>
       <Container>

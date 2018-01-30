@@ -4,23 +4,23 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import BaseScreen from './containers/base-screen'
 
 const Home = props => (
-  <Async load={import('./screens/home')} componentProps={props}/>
+  <Async load={import('./screens/home')} componentProps={props} />
 )
 
 const About = props => (
-  <Async load={import('./screens/about')} componentProps={props}/>
+  <Async load={import('./screens/about')} componentProps={props} />
 )
 
 const Topics = props => (
-  <Async load={import('./screens/topics')} componentProps={props}/>
+  <Async load={import('./screens/topics')} componentProps={props} />
 )
 
 const Timer = props => (
-  <Async load={import('./screens/timer')} componentProps={props}/>
+  <Async load={import('./screens/timer')} componentProps={props} />
 )
 
 const NoMatch = props => (
-  <Async load={import('./screens/no-match')} componentProps={props}/>
+  <Async load={import('./screens/no-match')} componentProps={props} />
 )
 
 const Login = () => (
@@ -32,15 +32,15 @@ const Login = () => (
 const App = () => (
   <Router>
     <Switch>
-      <Route exact path="/login" component={Login}/>
+      <Route exact path="/login" component={Login} />
       <Route>
         <BaseScreen>
           <Switch>
-            <Route exact path="/" component={Home}/>
-            <Route path="/about" component={About}/>
-            <Route path="/topics" component={Topics}/>
-            <Route path="/timer" component={Timer}/>
-            <Route component={NoMatch}/>
+            <Route exact path="/" component={Home} />
+            <Route path="/about" component={About} />
+            <Route path="/topics" component={Topics} />
+            <Route path="/timer" component={Timer} />
+            <Route component={NoMatch} />
           </Switch>
         </BaseScreen>
       </Route>

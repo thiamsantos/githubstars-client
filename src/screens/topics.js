@@ -34,8 +34,8 @@ const Topics = ({match}) => (
       </li>
     </ul>
 
-    <Route path={`${match.url}/:topicId`} component={Topic}/>
-    <Route exact path={match.url} render={DefaultTopic}/>
+    <Route path={`${match.url}/:topicId`} component={Topic} />
+    <Route exact path={match.url} render={DefaultTopic} />
   </div>
 )
 

@@ -79,6 +79,8 @@
     "xo": "^0.18.2"
   },
   "dependencies": {
+    "array-uniq": "^1.0.3",
+    "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
     "bulma": "^0.7.1",
     "classnames": "^2.2.5",
@@ -87,7 +89,8 @@
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-helmet": "^5.2.0"
+    "react-helmet": "^5.2.0",
+    "react-router": "^4.2.0"
   },
   "prettier": {
     "singleQuote": true,

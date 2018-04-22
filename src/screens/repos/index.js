@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
 
 const table = {
@@ -25,13 +26,15 @@ const table = {
       name: 'kubernetes',
       description: 'Alguma descrição',
       language: 'Golang',
-      tags: ['react', 'elixir']
+      tags: ['react', 'elixir'],
+      id: 1
     },
     {
-      name: 'kubernetes',
+      name: 'docker',
       description: 'Alguma descrição',
       language: 'Golang',
-      tags: ['react', 'elixir']
+      tags: ['react', 'elixir'],
+      id: 2
     }
   ]
 }
@@ -43,9 +46,6 @@ const Repos = ({match}) => (
 
     <p className="control has-icons-left">
       <input className="input" type="text" placeholder="search" />
-      <span className="icon is-left">
-        <i className="fas fa-search" aria-hidden="true" />
-      </span>
     </p>
 
     <div>Repos {match.params.userId}</div>
@@ -53,18 +53,20 @@ const Repos = ({match}) => (
     <table className="table is-fullwidth is-bordered is-striped">
       <thead>
         <tr>
-          {table.headers.map(header => <th>{header.text}</th>)}
+          {table.headers.map(header => <th key={header.key}>{header.text}</th>)}
           <th />
         </tr>
       </thead>
       <tbody>
         {table.data.map(item => (
-          <tr>
+          <tr key={item.id}>
             {table.headers
               .map(header => header.key)
-              .map(key => <td>{item[key]}</td>)}
+              .map(key => <td key={key}>{item[key]}</td>)}
             <td>
-              <button className="button">edit</button>
+              <button type="button" className="button">
+                edit
+              </button>
             </td>
           </tr>
         ))}
@@ -118,5 +120,11 @@ const Repos = ({match}) => (
     </nav>
   </section>
 )
+
+Repos.propTypes = {
+  match: PropTypes.shape({
+    userId: PropTypes.string.isRequired
+  }).isRequired
+}
 
 export default Repos

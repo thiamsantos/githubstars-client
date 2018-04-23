@@ -16,15 +16,24 @@ const enhance = compose(
       store.setUserId(userId)
 
       const queries = queryString.parse(location.search)
-      store.getRepos(userId, queries.page || 1)
+      store.getRepos(userId, {page: queries.page || 1})
     }
   }),
   withHandlers({
     gotoNextPage: ({store}) => () => {
-      store.getRepos(store.state.userId, store.state.nextPage)
+      store.getRepos(store.state.userId, {page: store.state.nextPage})
     },
     gotoPreviousPage: ({store}) => () =>
-      store.getRepos(store.state.userId, store.state.previousPage)
+      store.getRepos(store.state.userId, {page: store.state.previousPage}),
+    handleSearchChange: ({store}) => event => {
+      store.setSearchTag(event.target.value)
+    },
+    handleSearchClick: ({store}) => () => {
+      store.getRepos(store.state.userId, {
+        page: 1,
+        tag: store.state.searchTag
+      })
+    }
   }),
   withProps({
     headers: [

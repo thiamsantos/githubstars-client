@@ -5,14 +5,16 @@ class Repos extends Container {
   // eslint-disable-next-line no-undef
   state = {
     repos: [],
-    currentPage: null,
+    currentPage: 1,
     totalPages: null,
     isFirstPage: false,
     isLastPage: false,
     nextPage: null,
     previousUrl: '',
     nextUrl: '',
-    userId: null
+    userId: null,
+    searchTag: '',
+    searchUrl: ''
   }
 
   // eslint-disable-next-line no-undef
@@ -21,14 +23,25 @@ class Repos extends Container {
   }
 
   // eslint-disable-next-line no-undef
-  getRepos = (userId, page) => {
-    listRepos(userId, {page})
+  setSearchTag = value => {
+    this.setState(state => ({
+      ...state,
+      searchTag: value,
+      searchUrl: `/users/${state.userId}/repos?page=${state.currentPage}&tag=${value}`
+    }))
+  }
+
+  // eslint-disable-next-line no-undef
+  getRepos = (userId, {page, tag}) => {
+    listRepos(userId, {page, tag})
       .then(data => {
-        this.setState({
+        this.setState(state => ({
+          ...state,
           ...data,
           nextUrl: `/users/${userId}/repos?page=${data.nextPage}`,
-          previousUrl: `/users/${userId}/repos?page=${data.previousPage}`
-        })
+          previousUrl: `/users/${userId}/repos?page=${data.previousPage}`,
+          searchUrl: `/users/${userId}/repos?page=${state.currentPage}`
+        }))
       })
       .catch(err => console.error(err))
   }

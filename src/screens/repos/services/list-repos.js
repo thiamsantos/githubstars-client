@@ -1,8 +1,8 @@
 import axios from 'axios'
 import queryString from 'query-string'
 
-export default function listRepos(userId, {page = 1}) {
-  const params = queryString.stringify({page})
+export default function listRepos(userId, {page = 1, tag = ''}) {
+  const params = queryString.stringify({page, tag})
 
   return axios
     .get(process.env.BASE_URL + '/v1/users/' + userId + '/repos?' + params)

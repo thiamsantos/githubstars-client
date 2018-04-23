@@ -1,2 +1,6 @@
 $variable-columns: false;
 @import "~bulma";
+
+a[disabled] {
+  pointer-events: none;
+}

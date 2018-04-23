@@ -1,6 +1,7 @@
 import React from 'react'
 import Async from 'react-code-splitting'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import {Provider} from 'unstated'
 import './app.scss'
 
 const Home = props => (
@@ -18,18 +19,20 @@ const NoMatch = props => (
 const Login = () => <div>Login</div>
 
 const App = () => (
-  <Router>
-    <Switch>
-      <Route exact path="/login" component={Login} />
-      <Route>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/users/:userId/repos" component={Repos} />
-          <Route component={NoMatch} />
-        </Switch>
-      </Route>
-    </Switch>
-  </Router>
+  <Provider>
+    <Router>
+      <Switch>
+        <Route exact path="/login" component={Login} />
+        <Route>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/users/:userId/repos" component={Repos} />
+            <Route component={NoMatch} />
+          </Switch>
+        </Route>
+      </Switch>
+    </Router>
+  </Provider>
 )
 
 export default App

@@ -1,9 +1,16 @@
-import {stringifyTags, parseTags} from './tags'
+import {presentTags, stringifyTags, parseTags} from './tags'
 
 describe('tags', () => {
+  it('should present the tags', () => {
+    const actual = presentTags(['elixir', 'js'])
+    const expected = '#elixir #js'
+
+    expect(actual).toBe(expected)
+  })
+
   it('should stringify the tags', () => {
     const actual = stringifyTags(['elixir', 'js'])
-    const expected = '#elixir #js'
+    const expected = 'elixir, js'
 
     expect(actual).toBe(expected)
   })

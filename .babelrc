@@ -8,7 +8,9 @@
   "env": {
     "production": {
       "presets": ["react-optimize"],
-      "plugins": ["lodash"]
+      "plugins": [
+        ["lodash", {"id": ["lodash", "recompose"]}]
+      ]
     }
   }
 }

@@ -14,14 +14,13 @@ export default function handleSubmit(
     .catch(err => {
       setSubmitting(false)
 
-      if (err.response.status === 404) {
+      if (err.response && err.response.status === 404) {
         setErrors({requestFailed: 'Username not found on GitHub'})
         return
       }
 
-      if (err.response.status === 422) {
+      if (err.response && err.response.status === 422) {
         setErrors({requestFailed: 'Invalid username'})
-
         return
       }
 

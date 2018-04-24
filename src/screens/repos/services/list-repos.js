@@ -11,7 +11,7 @@ export default function listRepos(userId, {page = 1, tag = ''}) {
       const currentPage = payload._meta.page_number
       const totalPages = payload._meta.total_pages
       const isFirstPage = payload._meta.page_number === 1
-      const isLastPage = currentPage === totalPages - 1
+      const isLastPage = currentPage === totalPages
       const nextPage = isLastPage ? '' : currentPage + 1
       const previousPage = isFirstPage ? '' : currentPage - 1
 

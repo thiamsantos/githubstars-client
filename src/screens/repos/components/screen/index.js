@@ -1,46 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Link} from 'react-router-dom'
 import Header from '../header'
 import PaginatedTable from '../paginated-table'
+import Search from './search'
 
 const Screen = ({
   store,
   gotoPreviousPage,
   gotoNextPage,
   headers,
-  handleSearchClick,
-  handleSearchChange
+  handleSearch
 }) => {
-  const {
-    repos,
-    previousUrl,
-    isFirstPage,
-    isLastPage,
-    nextUrl,
-    searchTag,
-    searchUrl
-  } = store.state
+  const {repos, previousUrl, isFirstPage, isLastPage, nextUrl} = store.state
 
   return (
     <section className="section">
       <Header />
-      <nav className="field has-addons">
-        <p className="control">
-          <input
-            onChange={handleSearchChange}
-            className="input"
-            type="text"
-            value={searchTag}
-            placeholder="search by a tag"
-          />
-        </p>
-        <p className="control">
-          <Link to={searchUrl} onClick={handleSearchClick} className="button">
-            Search
-          </Link>
-        </p>
-      </nav>
+      <Search handleSearch={handleSearch} />
       <PaginatedTable
         headers={headers}
         repos={repos}
@@ -60,8 +36,7 @@ Screen.propTypes = {
   gotoNextPage: PropTypes.func.isRequired,
   gotoPreviousPage: PropTypes.func.isRequired,
   headers: PropTypes.array.isRequired,
-  handleSearchChange: PropTypes.func.isRequired,
-  handleSearchClick: PropTypes.func.isRequired
+  handleSearch: PropTypes.func.isRequired
 }
 
 export default Screen

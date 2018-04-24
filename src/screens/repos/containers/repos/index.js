@@ -1,4 +1,5 @@
 import {Container} from 'unstated'
+import querystring from 'query-string'
 import listRepos from '../../services/list-repos'
 
 class Repos extends Container {
@@ -18,28 +19,15 @@ class Repos extends Container {
   }
 
   // eslint-disable-next-line no-undef
-  setUserId = userId => {
-    this.setState({userId})
-  }
-
-  // eslint-disable-next-line no-undef
-  setSearchTag = value => {
-    this.setState(state => ({
-      ...state,
-      searchTag: value,
-      searchUrl: `/users/${state.userId}/repos?page=${
-        state.currentPage
-      }&tag=${value}`
-    }))
-  }
-
-  // eslint-disable-next-line no-undef
-  getRepos = (history, userId, {page, tag}) => {
+  getRepos = (history, userId, {page = 1, tag = ''}) => {
     listRepos(userId, {page, tag})
       .then(data => {
+        history.push({search: querystring.stringify({tag, page})})
         this.setState(state => ({
           ...state,
           ...data,
+          userId,
+          tag,
           nextUrl: `/users/${userId}/repos?page=${data.nextPage}`,
           previousUrl: `/users/${userId}/repos?page=${data.previousPage}`,
           searchUrl: `/users/${userId}/repos?page=${state.currentPage}`

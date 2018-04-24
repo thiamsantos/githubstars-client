@@ -12,11 +12,8 @@ const enhance = compose(
     componentDidMount() {
       const {match, location, store, history} = this.props
       const userId = match.params.userId
+      const queries = queryString.parse(location.search.replace(/^\?/, ''))
 
-      store.setUserId(userId)
-
-      const queries = queryString.parse(location.search)
-      store.setSearchTag(queries.tag)
       store.getRepos(history, userId, {
         page: queries.page || 1,
         tag: queries.tag
@@ -33,13 +30,10 @@ const enhance = compose(
       store.getRepos(history, store.state.userId, {
         page: store.state.previousPage
       }),
-    handleSearchChange: ({store}) => event => {
-      store.setSearchTag(event.target.value)
-    },
-    handleSearchClick: ({store}) => () => {
-      store.getRepos(store.state.userId, {
+    handleSearch: ({history, store}) => searchTag => {
+      store.getRepos(history, store.state.userId, {
         page: 1,
-        tag: store.state.searchTag
+        tag: searchTag
       })
     }
   }),

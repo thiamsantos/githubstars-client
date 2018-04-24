@@ -15,13 +15,17 @@ class Repos extends Container {
     nextUrl: '',
     userId: null,
     searchTag: '',
-    searchUrl: ''
+    searchUrl: '',
+    loading: true
   }
 
   // eslint-disable-next-line no-undef
   getRepos = (history, userId, {page = 1, tag = ''}) => {
+    this.setState({loading: true})
     listRepos(userId, {page, tag})
       .then(data => {
+        this.setState({loading: false})
+
         history.push({search: querystring.stringify({tag, page})})
         this.setState(state => ({
           ...state,
@@ -34,6 +38,7 @@ class Repos extends Container {
         }))
       })
       .catch(err => {
+        this.setState({loading: false})
         if (err.response && err.response.status === 404) {
           history.push('/404')
           return

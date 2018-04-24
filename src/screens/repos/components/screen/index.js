@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Header from '../header'
 import PaginatedTable from '../paginated-table'
 import Search from './search'
+import Loader from './loader'
 
 const Screen = ({
   store,
@@ -11,22 +12,34 @@ const Screen = ({
   headers,
   handleSearch
 }) => {
-  const {repos, previousUrl, isFirstPage, isLastPage, nextUrl} = store.state
+  const {
+    repos,
+    previousUrl,
+    isFirstPage,
+    isLastPage,
+    nextUrl,
+    loading
+  } = store.state
 
   return (
     <section className="section">
       <Header />
-      <Search handleSearch={handleSearch} />
-      <PaginatedTable
-        headers={headers}
-        repos={repos}
-        previousUrl={previousUrl}
-        gotoPreviousPage={gotoPreviousPage}
-        gotoNextPage={gotoNextPage}
-        isFirstPage={isFirstPage}
-        isLastPage={isLastPage}
-        nextUrl={nextUrl}
-      />
+
+      {loading ?
+        <Loader /> :
+        <div>
+            <Search handleSearch={handleSearch} />
+            <PaginatedTable
+              headers={headers}
+              repos={repos}
+              previousUrl={previousUrl}
+              gotoPreviousPage={gotoPreviousPage}
+              gotoNextPage={gotoNextPage}
+              isFirstPage={isFirstPage}
+              isLastPage={isLastPage}
+              nextUrl={nextUrl}
+            />
+        </div>}
     </section>
   )
 }

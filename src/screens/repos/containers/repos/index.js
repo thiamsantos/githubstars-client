@@ -27,12 +27,14 @@ class Repos extends Container {
     this.setState(state => ({
       ...state,
       searchTag: value,
-      searchUrl: `/users/${state.userId}/repos?page=${state.currentPage}&tag=${value}`
+      searchUrl: `/users/${state.userId}/repos?page=${
+        state.currentPage
+      }&tag=${value}`
     }))
   }
 
   // eslint-disable-next-line no-undef
-  getRepos = (userId, {page, tag}) => {
+  getRepos = (history, userId, {page, tag}) => {
     listRepos(userId, {page, tag})
       .then(data => {
         this.setState(state => ({
@@ -43,7 +45,14 @@ class Repos extends Container {
           searchUrl: `/users/${userId}/repos?page=${state.currentPage}`
         }))
       })
-      .catch(err => console.error(err))
+      .catch(err => {
+        if (err.response && err.response.status === 404) {
+          history.push('/404')
+          return
+        }
+
+        console.error(err)
+      })
   }
 }
 

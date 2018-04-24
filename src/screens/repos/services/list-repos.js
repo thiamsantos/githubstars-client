@@ -25,5 +25,4 @@ export default function listRepos(userId, {page = 1, tag = ''}) {
         previousPage
       }
     })
-    .catch(err => console.error(err))
 }

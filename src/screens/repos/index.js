@@ -10,21 +10,29 @@ const enhance = compose(
   withRouter,
   lifecycle({
     componentDidMount() {
-      const {match, location, store} = this.props
+      const {match, location, store, history} = this.props
       const userId = match.params.userId
 
       store.setUserId(userId)
 
       const queries = queryString.parse(location.search)
-      store.getRepos(userId, {page: queries.page || 1})
+      store.setSearchTag(queries.tag)
+      store.getRepos(history, userId, {
+        page: queries.page || 1,
+        tag: queries.tag
+      })
     }
   }),
   withHandlers({
-    gotoNextPage: ({store}) => () => {
-      store.getRepos(store.state.userId, {page: store.state.nextPage})
+    gotoNextPage: ({history, store}) => () => {
+      store.getRepos(history, store.state.userId, {
+        page: store.state.nextPage
+      })
     },
-    gotoPreviousPage: ({store}) => () =>
-      store.getRepos(store.state.userId, {page: store.state.previousPage}),
+    gotoPreviousPage: ({history, store}) => () =>
+      store.getRepos(history, store.state.userId, {
+        page: store.state.previousPage
+      }),
     handleSearchChange: ({store}) => event => {
       store.setSearchTag(event.target.value)
     },

@@ -1,6 +1,11 @@
 import React from 'react'
 import Async from 'react-code-splitting'
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from 'react-router-dom'
 import {Provider} from 'unstated'
 import './app.scss'
 
@@ -27,7 +32,8 @@ const App = () => (
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/users/:userId/repos" component={Repos} />
-            <Route component={NoMatch} />
+            <Route path="/404" component={NoMatch} />
+            <Redirect to="/404" />
           </Switch>
         </Route>
       </Switch>

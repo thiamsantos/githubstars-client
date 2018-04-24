@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {presentTags} from '../../../../core/tags'
+import {Subscribe} from 'unstated'
+import ReposContainer from '../../containers/repos'
+import Row from './row'
 
 const Table = ({headers, repos}) => (
   <table className="table is-fullwidth is-bordered is-striped">
@@ -12,18 +14,11 @@ const Table = ({headers, repos}) => (
     </thead>
     <tbody>
       {repos.map(item => (
-        <tr key={item.id}>
-          {headers.map(header => header.key).map(key => (
-            <td key={key}>
-              {key === 'tags' ? presentTags(item[key]) : item[key]}
-            </td>
-          ))}
-          <td>
-            <button type="button" className="button">
-              edit
-            </button>
-          </td>
-        </tr>
+        <Subscribe key={item.id} to={[ReposContainer]}>
+          {store => (
+            <Row userId={store.state.userId} item={item} headers={headers} />
+          )}
+        </Subscribe>
       ))}
     </tbody>
   </table>

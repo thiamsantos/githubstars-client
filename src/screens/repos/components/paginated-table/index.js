@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
 import Table from '../table'
+import style from './style.css'
 
 const PaginatedTable = ({
   headers,
@@ -13,7 +14,7 @@ const PaginatedTable = ({
   gotoNextPage,
   nextUrl
 }) => (
-  <div>
+  <div className={style.container}>
     <Table headers={headers} repos={repos} />
     <nav
       className="pagination is-centered"

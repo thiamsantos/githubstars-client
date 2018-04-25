@@ -1,11 +1,18 @@
-# githubstars-client
+# Githubstars Client
 
-```sh
-# Install the dependencies
-$ npm i
+This project uses [node](http://nodejs.org) and [npm](https://npmjs.com).
+Go check them out if you don't have them locally installed.
 
-# Start a webpack build in watch mode and a webserver with livereloading
-$ npm dev
-```
+The following versions are recommended:
 
-Now access the applicattion at [localhost:3000](http://localhost:3000) in your machine.
+  * node v8.1.2
+  * npm v5
+
+Setup:
+
+  * Open the client folder with `cd client`
+  * Create yout `.env` file, make sure to include the correct credentials with `cp .env.example .env`
+  * Install dependencies with `npm i`
+  * Build and start the server with `npm start`
+
+Now you can visit [`localhost:8080`](http://localhost:8080) from your browser.
